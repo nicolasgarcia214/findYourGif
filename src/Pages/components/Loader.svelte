@@ -1,7 +1,7 @@
 <script>
   export let width = 380;
   export let height = 380;
-  export let color = "#07aaa2";
+  export let color = "#ffffff";
   export let label = "loading";
 </script>
 

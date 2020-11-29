@@ -1,5 +1,4 @@
 <script>
-  import { gifs, numberOfGifs } from "../../store/store.js";
   import { createEventDispatcher } from "svelte";
   export let label = "NEXT";
 

@@ -2,7 +2,9 @@
   import { fly } from "svelte/transition";
   import Button from "./Button.svelte";
   import Loader from "./Loader.svelte";
-  import { gifs, numberOfGifs, names } from "../../store/store.js";
+  import { gifs, numberOfGifs, names } from "../../store/store.js"; 
+
+  
 
   let visible = false;
   setTimeout(() => {
@@ -14,8 +16,7 @@
   let search = "";
   let previousSearch = [];
   let totalGifs = {};
-  const API_URL =
-    "https://api.giphy.com/v1/gifs/search?limit=12&api_key=KmZWXurv5dQK6qA8Ma9aUM7nkrVf7jBi&rating=pg&q=";
+  const GIPHY_API_URL = __myapp.env.GIPHY
 
   async function fetchGifsSearch() {
     event.preventDefault();
@@ -23,7 +24,7 @@
     if (Object.keys(totalGifs).includes(search)) {
       $gifs = totalGifs[search].slice(0, 12);
     } else {
-      const response = await fetch(`${API_URL}${search}`);
+      const response = await fetch(`${GIPHY_API_URL}${search}`);
       const json = await response.json();
       $gifs = json.data.map(gif => gif.images.fixed_height.url);
       totalGifs[search] = $gifs;
@@ -42,7 +43,7 @@
       $gifs = totalGifs[search].slice(count, count + 12);
       count += 12;
     } else {
-      const response = await fetch(`${API_URL}${search}&offset=${count}`);
+      const response = await fetch(`${GIPHY_API_URL}${search}&offset=${count}`);
       const json = await response.json();
       $gifs = json.data.map(gif => gif.images.fixed_height.url);
       let storedValues = totalGifs[search];
@@ -275,7 +276,10 @@
       </div>
     </form>
   </div>
+{:else}
+  <Loader/>
 {/if}
+
 
 <div class="grid-results">
   {#each $gifs as gif}

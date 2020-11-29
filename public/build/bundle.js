@@ -21627,9 +21627,9 @@ var app = (function () {
     			t1 = text(/*label*/ ctx[0]);
     			attr_dev(link, "href", "https://fonts.googleapis.com/css?family=Dosis:700");
     			attr_dev(link, "rel", "stylesheet");
-    			add_location(link, file$1, 52, 0, 1246);
+    			add_location(link, file$1, 51, 0, 1184);
     			attr_dev(button, "class", "brk-btn svelte-17gx1x8");
-    			add_location(button, file$1, 56, 0, 1338);
+    			add_location(button, file$1, 55, 0, 1276);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -21683,13 +21683,7 @@ var app = (function () {
     		if ("label" in $$props) $$invalidate(0, label = $$props.label);
     	};
 
-    	$$self.$capture_state = () => ({
-    		gifs,
-    		numberOfGifs,
-    		createEventDispatcher,
-    		label,
-    		dispatch
-    	});
+    	$$self.$capture_state = () => ({ createEventDispatcher, label, dispatch });
 
     	$$self.$inject_state = $$props => {
     		if ("label" in $$props) $$invalidate(0, label = $$props.label);
@@ -21934,7 +21928,7 @@ var app = (function () {
     function instance$2($$self, $$props, $$invalidate) {
     	let { width = 380 } = $$props;
     	let { height = 380 } = $$props;
-    	let { color = "#07aaa2" } = $$props;
+    	let { color = "#ffffff" } = $$props;
     	let { label = "loading" } = $$props;
     	const writable_props = ["width", "height", "color", "label"];
 
@@ -22021,11 +22015,50 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[13] = list[i];
+    	child_ctx[14] = list[i];
     	return child_ctx;
     }
 
-    // (258:0) {#if visible}
+    // (279:0) {:else}
+    function create_else_block(ctx) {
+    	let current;
+    	const loader = new Loader({ $$inline: true });
+
+    	const block = {
+    		c: function create() {
+    			create_component(loader.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(loader, target, anchor);
+    			current = true;
+    		},
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(loader.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(loader.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(loader, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block.name,
+    		type: "else",
+    		source: "(279:0) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (259:0) {#if visible}
     function create_if_block_2(ctx) {
     	let div4;
     	let form;
@@ -22059,29 +22092,29 @@ var app = (function () {
     			attr_dev(input, "placeholder", "Find your gif");
     			input.required = true;
     			attr_dev(input, "class", "svelte-cdzsc9");
-    			add_location(input, file$3, 262, 10, 5636);
+    			add_location(input, file$3, 263, 10, 5571);
     			attr_dev(div0, "class", "td svelte-cdzsc9");
-    			add_location(div0, file$3, 261, 8, 5608);
+    			add_location(div0, file$3, 262, 8, 5543);
     			attr_dev(div1, "id", "s-circle");
     			attr_dev(div1, "class", "svelte-cdzsc9");
-    			add_location(div1, file$3, 270, 12, 5869);
+    			add_location(div1, file$3, 271, 12, 5804);
     			attr_dev(span, "class", "svelte-cdzsc9");
-    			add_location(span, file$3, 271, 12, 5904);
+    			add_location(span, file$3, 272, 12, 5839);
     			attr_dev(button, "type", "submit");
     			attr_dev(button, "class", "svelte-cdzsc9");
-    			add_location(button, file$3, 269, 10, 5833);
+    			add_location(button, file$3, 270, 10, 5768);
     			attr_dev(div2, "class", "td svelte-cdzsc9");
     			attr_dev(div2, "id", "s-cover");
-    			add_location(div2, file$3, 268, 8, 5792);
+    			add_location(div2, file$3, 269, 8, 5727);
     			attr_dev(div3, "class", "tb svelte-cdzsc9");
-    			add_location(div3, file$3, 260, 6, 5582);
+    			add_location(div3, file$3, 261, 6, 5517);
     			attr_dev(form, "method", "get");
     			attr_dev(form, "action", "");
     			attr_dev(form, "class", "svelte-cdzsc9");
-    			add_location(form, file$3, 259, 4, 5517);
+    			add_location(form, file$3, 260, 4, 5452);
     			attr_dev(div4, "id", "cover");
     			attr_dev(div4, "class", "svelte-cdzsc9");
-    			add_location(div4, file$3, 258, 2, 5451);
+    			add_location(div4, file$3, 259, 2, 5386);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, div4, anchor);
@@ -22100,7 +22133,7 @@ var app = (function () {
     			if (remount) run_all(dispose);
 
     			dispose = [
-    				listen_dev(input, "input", /*input_input_handler*/ ctx[12]),
+    				listen_dev(input, "input", /*input_input_handler*/ ctx[13]),
     				listen_dev(form, "submit", /*fetchGifsSearch*/ ctx[4], false, false, false)
     			];
     		},
@@ -22135,14 +22168,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(258:0) {#if visible}",
+    		source: "(259:0) {#if visible}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (281:2) {#each $gifs as gif}
+    // (285:2) {#each $gifs as gif}
     function create_each_block(ctx) {
     	let img;
     	let img_src_value;
@@ -22151,15 +22184,15 @@ var app = (function () {
     		c: function create() {
     			img = element("img");
     			attr_dev(img, "alt", "gif");
-    			if (img.src !== (img_src_value = /*gif*/ ctx[13])) attr_dev(img, "src", img_src_value);
+    			if (img.src !== (img_src_value = /*gif*/ ctx[14])) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "class", "svelte-cdzsc9");
-    			add_location(img, file$3, 281, 4, 6053);
+    			add_location(img, file$3, 285, 4, 6012);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*$gifs*/ 8 && img.src !== (img_src_value = /*gif*/ ctx[13])) {
+    			if (dirty & /*$gifs*/ 8 && img.src !== (img_src_value = /*gif*/ ctx[14])) {
     				attr_dev(img, "src", img_src_value);
     			}
     		},
@@ -22172,14 +22205,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(281:2) {#each $gifs as gif}",
+    		source: "(285:2) {#each $gifs as gif}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (286:0) {#if count >= 12}
+    // (290:0) {#if count >= 12}
     function create_if_block(ctx) {
     	let div;
     	let t;
@@ -22196,7 +22229,7 @@ var app = (function () {
     			t = space();
     			create_component(button.$$.fragment);
     			attr_dev(div, "class", div_class_value = "" + (null_to_empty(/*count*/ ctx[1] >= 24 ? "Buttons" : "Button") + " svelte-cdzsc9"));
-    			add_location(div, file$3, 286, 2, 6124);
+    			add_location(div, file$3, 290, 2, 6083);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -22255,14 +22288,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(286:0) {#if count >= 12}",
+    		source: "(290:0) {#if count >= 12}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (288:4) {#if count >= 24}
+    // (292:4) {#if count >= 24}
     function create_if_block_1(ctx) {
     	let current;
     	const button = new Button({ props: { label: "BACK" }, $$inline: true });
@@ -22295,7 +22328,7 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(288:4) {#if count >= 24}",
+    		source: "(292:4) {#if count >= 24}",
     		ctx
     	});
 
@@ -22303,12 +22336,23 @@ var app = (function () {
     }
 
     function create_fragment$3(ctx) {
+    	let current_block_type_index;
+    	let if_block0;
     	let t0;
     	let div;
     	let t1;
     	let if_block1_anchor;
     	let current;
-    	let if_block0 = /*visible*/ ctx[0] && create_if_block_2(ctx);
+    	const if_block_creators = [create_if_block_2, create_else_block];
+    	const if_blocks = [];
+
+    	function select_block_type(ctx, dirty) {
+    		if (/*visible*/ ctx[0]) return 0;
+    		return 1;
+    	}
+
+    	current_block_type_index = select_block_type(ctx);
+    	if_block0 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
     	let each_value = /*$gifs*/ ctx[3];
     	validate_each_argument(each_value);
     	let each_blocks = [];
@@ -22321,7 +22365,7 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			if (if_block0) if_block0.c();
+    			if_block0.c();
     			t0 = space();
     			div = element("div");
 
@@ -22333,13 +22377,13 @@ var app = (function () {
     			if (if_block1) if_block1.c();
     			if_block1_anchor = empty();
     			attr_dev(div, "class", "grid-results svelte-cdzsc9");
-    			add_location(div, file$3, 279, 0, 5997);
+    			add_location(div, file$3, 283, 0, 5956);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			if (if_block0) if_block0.m(target, anchor);
+    			if_blocks[current_block_type_index].m(target, anchor);
     			insert_dev(target, t0, anchor);
     			insert_dev(target, div, anchor);
 
@@ -22353,27 +22397,28 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
-    			if (/*visible*/ ctx[0]) {
-    				if (if_block0) {
-    					if_block0.p(ctx, dirty);
+    			let previous_block_index = current_block_type_index;
+    			current_block_type_index = select_block_type(ctx);
 
-    					if (dirty & /*visible*/ 1) {
-    						transition_in(if_block0, 1);
-    					}
-    				} else {
-    					if_block0 = create_if_block_2(ctx);
-    					if_block0.c();
-    					transition_in(if_block0, 1);
-    					if_block0.m(t0.parentNode, t0);
-    				}
-    			} else if (if_block0) {
+    			if (current_block_type_index === previous_block_index) {
+    				if_blocks[current_block_type_index].p(ctx, dirty);
+    			} else {
     				group_outros();
 
-    				transition_out(if_block0, 1, 1, () => {
-    					if_block0 = null;
+    				transition_out(if_blocks[previous_block_index], 1, 1, () => {
+    					if_blocks[previous_block_index] = null;
     				});
 
     				check_outros();
+    				if_block0 = if_blocks[current_block_type_index];
+
+    				if (!if_block0) {
+    					if_block0 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    					if_block0.c();
+    				}
+
+    				transition_in(if_block0, 1);
+    				if_block0.m(t0.parentNode, t0);
     			}
 
     			if (dirty & /*$gifs*/ 8) {
@@ -22435,7 +22480,7 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (if_block0) if_block0.d(detaching);
+    			if_blocks[current_block_type_index].d(detaching);
     			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(div);
     			destroy_each(each_blocks, detaching);
@@ -22455,8 +22500,6 @@ var app = (function () {
 
     	return block;
     }
-
-    const API_URL = "https://api.giphy.com/v1/gifs/search?limit=12&api_key=KmZWXurv5dQK6qA8Ma9aUM7nkrVf7jBi&rating=pg&q=";
 
     function instance$3($$self, $$props, $$invalidate) {
     	let $gifs;
@@ -22482,6 +22525,7 @@ var app = (function () {
     	let search = "";
     	let previousSearch = [];
     	let totalGifs = {};
+    	const GIPHY_API_URL = {"env":{"isProd":false,"GIPHY":"https://api.giphy.com/v1/gifs/search?limit=12&api_key=KmZWXurv5dQK6qA8Ma9aUM7nkrVf7jBi&rating=pg&q="}}.env.GIPHY;
 
     	async function fetchGifsSearch() {
     		event.preventDefault();
@@ -22490,7 +22534,7 @@ var app = (function () {
     		if (Object.keys(totalGifs).includes(search)) {
     			set_store_value(gifs, $gifs = totalGifs[search].slice(0, 12));
     		} else {
-    			const response = await fetch(`${API_URL}${search}`);
+    			const response = await fetch(`${GIPHY_API_URL}${search}`);
     			const json = await response.json();
     			set_store_value(gifs, $gifs = json.data.map(gif => gif.images.fixed_height.url));
     			totalGifs[search] = $gifs;
@@ -22512,7 +22556,7 @@ var app = (function () {
     			set_store_value(gifs, $gifs = totalGifs[search].slice(count, count + 12));
     			$$invalidate(1, count += 12);
     		} else {
-    			const response = await fetch(`${API_URL}${search}&offset=${count}`);
+    			const response = await fetch(`${GIPHY_API_URL}${search}&offset=${count}`);
     			const json = await response.json();
     			set_store_value(gifs, $gifs = json.data.map(gif => gif.images.fixed_height.url));
     			let storedValues = totalGifs[search];
@@ -22560,7 +22604,7 @@ var app = (function () {
     		search,
     		previousSearch,
     		totalGifs,
-    		API_URL,
+    		GIPHY_API_URL,
     		fetchGifsSearch,
     		fetchGifsNextButton,
     		getGifsBackButton,
@@ -22595,6 +22639,7 @@ var app = (function () {
     		$names,
     		$numberOfGifs,
     		previousSearch,
+    		GIPHY_API_URL,
     		input_input_handler
     	];
     }
